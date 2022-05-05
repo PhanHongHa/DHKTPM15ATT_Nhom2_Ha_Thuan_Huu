@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "651513111197",
+    "project_id": "dhktpm15att-nhom2-ha-thuan-huu",
+    "storage_bucket": "dhktpm15att-nhom2-ha-thuan-huu.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:651513111197:android:9c311a6b0e7f23ec3e6a74",
+        "android_client_info": {
+          "package_name": "com.example.dhktpm15att_nhom2_ha_thuan_huu"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "651513111197-l97lhp9f9rgdg2j2joi6br6be006r5sv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD7I4MTOl_4GBKVSebrryvCdHPmv0HU_T8"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "651513111197-l97lhp9f9rgdg2j2joi6br6be006r5sv.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
