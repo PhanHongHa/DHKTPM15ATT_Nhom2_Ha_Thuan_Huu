@@ -40,8 +40,8 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
 
         Student student = students.get(position);
         holder.ten.setText(student.ten);
-        holder.ten.setText(student.lop);
-        holder.ten.setText(student.email);
+        holder.lop.setText(student.lop);
+        holder.email.setText(student.email);
     }
 
     @Override
