@@ -1,8 +1,5 @@
 package com.example.dhktpm15att_nhom2_ha_thuan_huu;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -10,6 +7,9 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -50,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()) {
                     Toast.makeText(LoginActivity.this, "Successed", Toast.LENGTH_SHORT).show();
-                    startActivity(new Intent(LoginActivity.this, RecyclerViewActivity.class));
+                    startActivity(new Intent(LoginActivity.this, com.example.dhktpm15att_nhom2_ha_thuan_huu.RecyclerViewActivity.class));
                 } else {
                     Toast.makeText(LoginActivity.this, "Email hoặc Password sai", Toast.LENGTH_SHORT).show();
                 }

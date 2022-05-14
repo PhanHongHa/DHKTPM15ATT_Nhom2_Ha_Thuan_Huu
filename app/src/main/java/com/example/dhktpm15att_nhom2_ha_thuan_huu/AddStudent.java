@@ -1,9 +1,5 @@
 package com.example.dhktpm15att_nhom2_ha_thuan_huu;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
@@ -11,6 +7,10 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -61,7 +61,7 @@ public class AddStudent extends AppCompatActivity {
         Map<String, Object> doc = new HashMap<>();
         doc.put("id", id);
         doc.put("lop", lop);
-        doc.put("name", name);
+        doc.put("ten", name);
         doc.put("email", email);
         db.collection("students").document(id).set(doc).addOnCompleteListener(new OnCompleteListener<Void>() {
             @Override
@@ -69,7 +69,7 @@ public class AddStudent extends AppCompatActivity {
                 dialog.dismiss();
 
                 Toast.makeText(AddStudent.this, "Uploaded...", Toast.LENGTH_SHORT).show();
-                startActivity(new Intent(AddStudent.this, RecyclerViewActivity.class));
+                startActivity(new Intent(AddStudent.this, com.example.dhktpm15att_nhom2_ha_thuan_huu.RecyclerViewActivity.class));
             }
         })
                 .addOnFailureListener(new OnFailureListener() {

@@ -1,17 +1,16 @@
 package com.example.dhktpm15att_nhom2_ha_thuan_huu;
 
-
+import android.app.ProgressDialog;
+import android.content.Intent;
+import android.os.Bundle;
+import android.util.Log;
+import android.widget.Button;
+import android.widget.ImageButton;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.app.ProgressDialog;
-import android.content.Intent;
-import android.os.Bundle;
-import android.widget.ImageButton;
-import android.util.Log;
 
 import com.google.firebase.firestore.DocumentChange;
 import com.google.firebase.firestore.EventListener;
@@ -25,13 +24,14 @@ import java.util.ArrayList;
 public class RecyclerViewActivity extends AppCompatActivity {
 
     RecyclerView recyclerView;
-    StudentAdapter studentAdapter;
-    ArrayList<Student> students;
+    com.example.dhktpm15att_nhom2_ha_thuan_huu.StudentAdapter studentAdapter;
+    ArrayList<com.example.dhktpm15att_nhom2_ha_thuan_huu.Student> students;
     FirebaseFirestore db;
     ProgressDialog dialog;
 
     private ImageButton btnAdd;
-
+    private Button btnDelete;
+    private com.example.dhktpm15att_nhom2_ha_thuan_huu.StudentAdapter.StudentViewHolder holder;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -48,42 +48,44 @@ public class RecyclerViewActivity extends AppCompatActivity {
         recyclerView.setLayoutManager( new LinearLayoutManager(this));
 
         db = FirebaseFirestore.getInstance();
-        students = new ArrayList<Student>();
-        studentAdapter = new StudentAdapter(RecyclerViewActivity.this,students);
+        students = new ArrayList<com.example.dhktpm15att_nhom2_ha_thuan_huu.Student>();
+        studentAdapter = new com.example.dhktpm15att_nhom2_ha_thuan_huu.StudentAdapter(RecyclerViewActivity.this,students);
 
         recyclerView.setAdapter(studentAdapter);
         ReadData();
 
         btnAdd = findViewById(R.id.btnAdd);
         btnAdd.setOnClickListener((view) -> {
-            Intent intent = new Intent(this, AddStudent.class);
+            Intent intent = new Intent(this, com.example.dhktpm15att_nhom2_ha_thuan_huu.AddStudent.class);
             startActivity(intent);
         });
+
+
 
     }
 
     private void ReadData() {
-        db.collection("students").orderBy("name", Query.Direction.ASCENDING).orderBy("lop", Query.Direction.ASCENDING).orderBy("email", Query.Direction.ASCENDING)
+        db.collection("students").orderBy("ten", Query.Direction.ASCENDING).orderBy("lop", Query.Direction.ASCENDING).orderBy("email", Query.Direction.ASCENDING)
                 .addSnapshotListener(new EventListener<QuerySnapshot>() {
-            @Override
-            public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
-                if(error != null){
-                    if(dialog.isShowing())
-                        dialog.dismiss();
-                    Log.e("FireStore error",error.getMessage() );
-                    return;
-                }
-                for(DocumentChange  doc: value.getDocumentChanges()){
-                    if(doc.getType()==DocumentChange.Type.ADDED){
-                        students.add(doc.getDocument().toObject(Student.class));
-                    }
-                    studentAdapter.notifyDataSetChanged();
-                    if(dialog.isShowing())
-                        dialog.dismiss();
-                }
+                    @Override
+                    public void onEvent(@Nullable QuerySnapshot value, @Nullable FirebaseFirestoreException error) {
+                        if(error != null){
+                            if(dialog.isShowing())
+                                dialog.dismiss();
+                            Log.e("FireStore error",error.getMessage() );
+                            return;
+                        }
+                        for(DocumentChange  doc: value.getDocumentChanges()){
+                            if(doc.getType()==DocumentChange.Type.ADDED){
+                                students.add(doc.getDocument().toObject(com.example.dhktpm15att_nhom2_ha_thuan_huu.Student.class));
+                            }
+                            studentAdapter.notifyDataSetChanged();
+                            if(dialog.isShowing())
+                                dialog.dismiss();
+                        }
 
-            }
-        });
+                    }
+                });
 
     }
 }
