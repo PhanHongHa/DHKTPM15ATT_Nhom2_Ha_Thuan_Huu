@@ -1,9 +1,12 @@
 package com.example.dhktpm15att_nhom2_ha_thuan_huu;
 
-public class Student {
+import java.io.Serializable;
+
+public class Student implements Serializable
+{
     String id;
-   String ten, lop, email;
-   int picture;
+    String ten, lop, email;
+    int picture;
 
 
     public Student(String id, String ten, String lop, String email) {
@@ -12,6 +15,12 @@ public class Student {
         this.lop = lop;
         this.email = email;
 
+    }
+
+    public Student(String ten, String lop, String email) {
+        this.ten = ten;
+        this.lop = lop;
+        this.email = email;
     }
 
     public Student() {

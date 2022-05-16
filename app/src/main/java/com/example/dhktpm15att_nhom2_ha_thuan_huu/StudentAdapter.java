@@ -1,10 +1,13 @@
 package com.example.dhktpm15att_nhom2_ha_thuan_huu;
 
 
+import static android.widget.Toast.*;
+
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,10 +19,12 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
@@ -42,7 +47,6 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
 
 
 
-
         return new StudentViewHolder(view);
 
     }
@@ -50,10 +54,21 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
     @Override
     public void onBindViewHolder(@NonNull StudentViewHolder holder, int position) {
 
-        com.example.dhktpm15att_nhom2_ha_thuan_huu.Student student = students.get(position);
+        Student student = students.get(position);
+
         holder.ten.setText(student.ten);
         holder.lop.setText(student.lop);
         holder.email.setText(student.email);
+
+        holder.btn_item_Sua.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(context, UpdateStudent.class);
+                intent.putExtra("student", (Serializable) student);
+                context.startActivity(intent);
+            }
+        });
         holder.btn_item_Xoa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,7 +81,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
                         FirebaseFirestore docRef = FirebaseFirestore.getInstance();
                         DocumentReference selectedDoc = docRef.collection("students").document(student.getId());
                         selectedDoc.delete();
-
+                        makeText(holder.ten.getContext(), "Xoá thành công", LENGTH_SHORT).show();
 
 
                     }
@@ -74,12 +89,13 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
                 builder.setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
-                        Toast.makeText(holder.ten.getContext(), "Cancel", Toast.LENGTH_SHORT).show();
+                        makeText(holder.ten.getContext(), "Cancel", LENGTH_SHORT).show();
                     }
                 });
                 builder.show();
             }
         });
+
 
     }
 
@@ -91,7 +107,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
     public static class StudentViewHolder extends RecyclerView.ViewHolder {
 
         private TextView ten, lop, email;
-        Button btn_item_Xoa;
+        Button btn_item_Xoa,btn_item_Sua;
         public StudentViewHolder(@NonNull View itemView) {
             super(itemView);
 
@@ -99,6 +115,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
             lop = itemView.findViewById(R.id.txtLop);
             email = itemView.findViewById(R.id.txtEmail_LV);
             btn_item_Xoa=itemView.findViewById(R.id.btnDelete);
+            btn_item_Sua=itemView.findViewById(R.id.btnEdit);
         }
     }
 
