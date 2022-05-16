@@ -20,7 +20,7 @@ public class MainActivity extends AppCompatActivity {
         btnRegister = findViewById(R.id.button);
 
         btnSignIn.setOnClickListener((view) -> {
-            Intent intent = new Intent(this, LoginActivity.class);
+            Intent intent = new Intent(this, RecyclerViewActivity.class);
             startActivity(intent);
         });
 
