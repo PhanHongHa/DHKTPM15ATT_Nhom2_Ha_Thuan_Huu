@@ -7,6 +7,7 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -43,16 +44,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
     public StudentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.student,parent,false);
         db = FirebaseFirestore.getInstance();
-        Student student = students.get(viewType);
 
-        view.findViewById(R.id.btnEdit).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(context, UpdateStudent.class);
-                intent.putExtra("student", (Serializable) student);
-                context.startActivity(intent);
-            }
-        });
 
 
         return new StudentViewHolder(view);
@@ -62,11 +54,21 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
     @Override
     public void onBindViewHolder(@NonNull StudentViewHolder holder, int position) {
 
-        com.example.dhktpm15att_nhom2_ha_thuan_huu.Student student = students.get(position);
+        Student student = students.get(position);
 
         holder.ten.setText(student.ten);
         holder.lop.setText(student.lop);
         holder.email.setText(student.email);
+
+        holder.btn_item_Sua.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent intent = new Intent(context, UpdateStudent.class);
+                intent.putExtra("student", (Serializable) student);
+                context.startActivity(intent);
+            }
+        });
         holder.btn_item_Xoa.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

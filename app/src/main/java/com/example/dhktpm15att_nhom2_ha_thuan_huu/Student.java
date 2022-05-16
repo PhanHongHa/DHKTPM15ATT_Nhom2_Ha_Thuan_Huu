@@ -1,6 +1,9 @@
 package com.example.dhktpm15att_nhom2_ha_thuan_huu;
 
-public class Student {
+import java.io.Serializable;
+
+public class Student implements Serializable
+{
     String id;
    String ten, lop, email;
    int picture;
