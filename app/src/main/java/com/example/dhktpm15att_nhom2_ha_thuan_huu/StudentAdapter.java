@@ -23,6 +23,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 
@@ -42,8 +43,16 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
     public StudentViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(context).inflate(R.layout.student,parent,false);
         db = FirebaseFirestore.getInstance();
+        Student student = students.get(viewType);
 
-
+        view.findViewById(R.id.btnEdit).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, UpdateStudent.class);
+                intent.putExtra("student", (Serializable) student);
+                context.startActivity(intent);
+            }
+        });
 
 
         return new StudentViewHolder(view);
@@ -54,6 +63,7 @@ public class StudentAdapter extends RecyclerView.Adapter<StudentAdapter.StudentV
     public void onBindViewHolder(@NonNull StudentViewHolder holder, int position) {
 
         com.example.dhktpm15att_nhom2_ha_thuan_huu.Student student = students.get(position);
+
         holder.ten.setText(student.ten);
         holder.lop.setText(student.lop);
         holder.email.setText(student.email);

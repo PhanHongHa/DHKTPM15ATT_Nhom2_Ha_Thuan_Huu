@@ -10,6 +10,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DHKTPM15ATT_Nhom2_Ha_Thuan_Huu">
         <activity
+            android:name=".UpdateStudent"
+            android:exported="false" />
+        <activity
             android:name=".AddStudent"
             android:exported="false" />
         <activity

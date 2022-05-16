@@ -14,6 +14,12 @@ public class Student {
 
     }
 
+    public Student(String ten, String lop, String email) {
+        this.ten = ten;
+        this.lop = lop;
+        this.email = email;
+    }
+
     public Student() {
     }
 

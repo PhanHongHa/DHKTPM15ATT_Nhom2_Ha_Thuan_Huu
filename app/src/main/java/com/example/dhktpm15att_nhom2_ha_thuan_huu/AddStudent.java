@@ -31,10 +31,10 @@ public class AddStudent extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_student);
-        txtName = findViewById(R.id.txtName_a);
-        txtLop = findViewById(R.id.txtLop_a);
-        txtEmail = findViewById(R.id.txtEmail_a);
-        btnAdd = findViewById(R.id.btnAdd_a);
+        txtName = findViewById(R.id.txtName_edit);
+        txtLop = findViewById(R.id.txtLop_edit);
+        txtEmail = findViewById(R.id.txtEmail_edit);
+        btnAdd = findViewById(R.id.btn_edit_1);
         dialog = new ProgressDialog(this);
         db = FirebaseFirestore.getInstance();
 
