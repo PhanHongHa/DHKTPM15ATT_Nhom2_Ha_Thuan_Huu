@@ -5,8 +5,8 @@ import java.io.Serializable;
 public class Student implements Serializable
 {
     String id;
-   String ten, lop, email;
-   int picture;
+    String ten, lop, email;
+    int picture;
 
 
     public Student(String id, String ten, String lop, String email) {
