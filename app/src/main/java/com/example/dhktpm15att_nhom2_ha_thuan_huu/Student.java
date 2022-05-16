@@ -1,19 +1,28 @@
 package com.example.dhktpm15att_nhom2_ha_thuan_huu;
 
 public class Student {
+    String id;
    String ten, lop, email;
    int picture;
 
 
-
-    public Student(String ten, String lop, String email, int picture) {
+    public Student(String id, String ten, String lop, String email) {
+        this.id = id;
         this.ten = ten;
         this.lop = lop;
         this.email = email;
-        this.picture = picture;
+
     }
 
     public Student() {
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTen() {
@@ -46,5 +55,16 @@ public class Student {
 
     public void setPicture(int picture) {
         this.picture = picture;
+    }
+
+    @Override
+    public String toString() {
+        return "Student{" +
+                "id='" + id + '\'' +
+                ", ten='" + ten + '\'' +
+                ", lop='" + lop + '\'' +
+                ", email='" + email + '\'' +
+                ", picture=" + picture +
+                '}';
     }
 }
