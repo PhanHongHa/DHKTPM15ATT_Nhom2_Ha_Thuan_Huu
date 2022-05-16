@@ -26,7 +26,7 @@ public class AddStudent extends AppCompatActivity {
     ProgressDialog dialog;
     FirebaseFirestore db;
     Button btnAdd;
-
+    Button btnEdit;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
